@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name">VerifyBlind Demo</string>
+
+    <!-- Header -->
+    <string name="subtitle_test_app">Demo Uygulaması</string>
+
+    <!-- Parameters -->
+    <string name="section_parameters">Doğrulama Parametreleri</string>
+    <string name="param_userid_title">Kullanıcı Kimliği</string>
+    <string name="param_userid_desc">Kullanıcıya ait benzersiz kimlik değeri döner.</string>
+    <string name="param_age_title">Yaş Doğrulaması (18+)</string>
+    <string name="param_age_desc">Kullanıcının 18 yaş veya üzerinde olduğunu doğrular.</string>
+
+    <!-- Actions -->
+    <string name="btn_verify">VerifyBlind ile Doğrula</string>
+    <string name="btn_preview">Örnek doğrulamayı gör</string>
+    <string name="btn_clear">Temizle</string>
+    <string name="btn_copy">Kopyala</string>
+    <string name="cd_copy">Kopyala</string>
+
+    <!-- Sections -->
+    <string name="section_result">Doğrulama Sonucu</string>
+    <string name="section_log">Geliştirici Log</string>
+
+    <!-- Result block -->
+    <string name="result_initial">// Doğrulama bekleniyor…</string>
+    <string name="result_waiting">// Sonuç bekleniyor…</string>
+    <string name="result_cancelled_block">// %1$s\n// %2$s</string>
+    <string name="result_error_block">// hata: %s</string>
+
+    <!-- Status badge -->
+    <string name="status_success">● Başarılı</string>
+    <string name="status_error">● Hata</string>
+    <string name="status_example">🔵 ÖRNEK</string>
+
+    <!-- Loading overlay -->
+    <string name="overlay_opening">Lütfen bekleyiniz.\nVerifyBlind uygulaması açılıyor…</string>
+    <string name="overlay_waiting">Lütfen bekleyiniz.\nSonuç bekleniyor…</string>
+    <string name="overlay_cancel">İptal / Yeni istek</string>
+
+    <!-- Values -->
+    <string name="value_yes">Evet</string>
+    <string name="value_no">Hayır</string>
+
+    <!-- Toasts -->
+    <string name="toast_copied">Sonuç kopyalandı</string>
+    <string name="toast_log_copied">Log kopyalandı</string>
+    <string name="toast_no_backend">Partner Backend URL boş! local.properties kontrol edin.</string>
+
+    <!-- Log lines -->
+    <string name="log_initial">&gt; Hazır. \'VerifyBlind ile Doğrula\' butonuna basın.\n</string>
+    <string name="log_cleared">&gt; Log temizlendi.\n</string>
+    <string name="log_ready">VerifyBlind SDK hazır</string>
+    <string name="log_env">Ortam: %s</string>
+    <string name="log_start">startAuthentication() başlatıldı</string>
+    <string name="log_preview_marker">EXAMPLE MODE — simülasyon, gerçek doğrulama yapılmıyor</string>
+    <string name="log_opening">VerifyBlind uygulaması açılıyor…</string>
+    <string name="log_request_created">İstek oluşturuldu. Nonce: %s</string>
+    <string name="log_complete_in_app">VerifyBlind\'de doğrulamayı tamamlayın; uygulamaya döndüğünüzde sonuç sorgulanır.</string>
+    <string name="log_polling">Sonuç bekleniyor (polling)…</string>
+    <string name="log_waiting_secs">… bekleniyor (%dsn)</string>
+    <string name="log_result_applied">Sonuç alındı ve ekrana yansıtıldı.</string>
+    <string name="log_timeout">Zaman aşımı. Uygulamaya tekrar geldiğinizde sorgu otomatik yenilenir.</string>
+    <string name="log_session_restarted">Oturum yeniden başlatıldı (uygulama bellekten atılmış). Lütfen tekrar Doğrula\'ya basın.</string>
+    <string name="log_polling_cancelled">Bekleme kullanıcı tarafından iptal edildi. Yeni istek gönderebilirsiniz.</string>
+    <string name="log_deeplink">🔗 App-to-Web-to-App dönüşü yakalandı</string>
+    <string name="log_deeplink_nonce">Nonce: %s — sonuç ön planda sorgulanacak.</string>
+    <string name="log_deeplink_fail">❌ Başarısız veya iptal. Status: %s</string>
+    <string name="log_validations">Validations: %s</string>
+    <string name="log_cancel">%1$s · reason=%2$s</string>
+
+    <!-- Errors -->
+    <string name="err_generic">Beklenmeyen hata</string>
+    <string name="err_start">Başlatılamadı: %s</string>
+    <!-- Bağlantı hatası: ana VerifyBlind uygulamasıyla AYNI kanonik metin
+         (error_connection_generic). Ham istisna metni GÖSTERİLMEZ — içinde API sunucusunun
+         adı geçtiği için cihaz kaynaklı bir kesinti servis kesintisi gibi görünüyor. -->
+    <string name="err_no_connection_title">Bağlantı Hatası</string>
+    <string name="err_no_connection">İnternet bağlantısına ulaşılamadı. Lütfen bağlantınızı kontrol edip tekrar deneyin.</string>
+    <string name="err_title">Hata</string>
+    <string name="btn_ok">Tamam</string>
+
+    <!-- Cancel reasons -->
+    <string name="cancel_no_card_title">Kayıtlı Kart Yok</string>
+    <string name="cancel_no_card_detail">Kullanıcının VerifyBlind uygulamasında kayıtlı kimlik kartı bulunmuyor.</string>
+    <string name="cancel_declined_title">İzin Verilmedi</string>
+    <string name="cancel_declined_detail">Kullanıcı veri paylaşımına izin vermedi.</string>
+    <string name="cancel_fingerprint_title">Biyometrik Başarısız</string>
+    <string name="cancel_fingerprint_detail">Parmak izi / biyometrik doğrulama başarısız oldu.</string>
+    <string name="cancel_session_title">Oturum Süresi Doldu</string>
+    <string name="cancel_session_detail">Mobil oturum süresi doldu. Lütfen tekrar deneyin.</string>
+    <string name="cancel_generic_title">İptal Edildi</string>
+    <string name="cancel_generic_detail">Kullanıcı kimlik doğrulamayı iptal etti.</string>
+</resources>

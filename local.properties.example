@@ -1,0 +1,16 @@
+﻿## Bu dosya local.properties için örnektir.
+## Bu dosyayı 'local.properties' adıyla kopyalayın ve içindeki değerleri kendinize göre doldurun.
+## Bu dosya GitHub'a gönderilebilir, ancak 'local.properties' dosyası GİZLİ kalmalıdır.
+
+# Partner Portal / Backend URL
+verifyblind.partnerBackendUrl=https://test.verifyblind.com/api/generate
+
+# Certificate Pins (Virgül ile ayrılmış sha256 hash listesi)
+# En az bir asıl, bir yedek (backup) pin eklemeniz önerilir.
+verifyblind.certificatePins=sha256/PRIMARY_PIN,sha256/BACKUP_PIN
+
+# Polling (sorgu) uç noktası (Varsayılan: verify)
+verifyblind.verifyEndpoint=verify
+
+# VerifyBlind App Link baz URL'i
+verifyblind.appLinkBase=https://app.verifyblind.com/request

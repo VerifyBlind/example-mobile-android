@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- VerifyBlind marka paleti (DESIGN_TOKENS.md ile birebir, VerifyBlind.Android ile hizalı) -->
+
+    <!-- slate-900: dark bg -->
+    <color name="bg_dark">#0F172A</color>
+    <!-- slate-800: kart/yüzey -->
+    <color name="surface">#1E293B</color>
+    <!-- slate-700: dark border -->
+    <color name="card_stroke">#334155</color>
+
+    <!-- blue-600: PRIMARY / CTA -->
+    <color name="primary">#2563EB</color>
+    <!-- blue-700: primary hover -->
+    <color name="primary_hover">#1D4ED8</color>
+    <!-- blue-400: koyu zeminde link/accent metin (kural 8) -->
+    <color name="blue_400">#60A5FA</color>
+    <!-- cyan-400: imza accent (ikon tint / aktif gösterge) -->
+    <color name="accent_cyan">#22D3EE</color>
+
+    <!-- slate-100: dark foreground -->
+    <color name="text_primary">#F1F5F9</color>
+    <!-- slate-400: dark muted text -->
+    <color name="text_secondary">#94A3B8</color>
+    <!-- slate-500: secondary text -->
+    <color name="text_muted">#64748B</color>
+
+    <!-- semantik durum -->
+    <color name="success">#10B981</color>
+    <!-- success dark text -->
+    <color name="success_text">#34D399</color>
+    <!-- success %12 zemin -->
+    <color name="success_bg">#2010B981</color>
+    <color name="error">#EF4444</color>
+    <color name="error_text">#F87171</color>
+    <color name="error_bg">#20EF4444</color>
+
+    <!-- ÖNİZLEME (EXAMPLE) badge metin rengi -->
+    <color name="example_text">#3B82F6</color>
+
+    <!-- slate-950: kod/konsol bloğu -->
+    <color name="code_bg">#020617</color>
+
+    <color name="on_primary">#FFFFFF</color>
+</resources>

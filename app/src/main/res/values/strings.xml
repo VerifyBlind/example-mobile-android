@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name">VerifyBlind Demo</string>
+
+    <!-- Header -->
+    <string name="subtitle_test_app">Demo App</string>
+
+    <!-- Parameters -->
+    <string name="section_parameters">Verification Parameters</string>
+    <string name="param_userid_title">User Identity</string>
+    <string name="param_userid_desc">Returns a unique identifier for the user.</string>
+    <string name="param_age_title">Age Verification (18+)</string>
+    <string name="param_age_desc">Verifies the user is 18 or older.</string>
+
+    <!-- Actions -->
+    <string name="btn_verify">Verify with VerifyBlind</string>
+    <string name="btn_preview">See example verification</string>
+    <string name="btn_clear">Clear</string>
+    <string name="btn_copy">Copy</string>
+    <string name="cd_copy">Copy</string>
+
+    <!-- Sections -->
+    <string name="section_result">Verification Result</string>
+    <string name="section_log">Developer Log</string>
+
+    <!-- Result block -->
+    <string name="result_initial">// Waiting for verification…</string>
+    <string name="result_waiting">// Waiting for result…</string>
+    <string name="result_cancelled_block">// %1$s\n// %2$s</string>
+    <string name="result_error_block">// error: %s</string>
+
+    <!-- Status badge -->
+    <string name="status_success">● Success</string>
+    <string name="status_error">● Error</string>
+    <string name="status_example">🔵 EXAMPLE</string>
+
+    <!-- Loading overlay -->
+    <string name="overlay_opening">Please wait.\nOpening the VerifyBlind app…</string>
+    <string name="overlay_waiting">Please wait.\nWaiting for result…</string>
+    <string name="overlay_cancel">Cancel / New request</string>
+
+    <!-- Values -->
+    <string name="value_yes">Yes</string>
+    <string name="value_no">No</string>
+
+    <!-- Toasts -->
+    <string name="toast_copied">Result copied</string>
+    <string name="toast_log_copied">Log copied</string>
+    <string name="toast_no_backend">Partner Backend URL is empty! Check local.properties.</string>
+
+    <!-- Log lines -->
+    <string name="log_initial">&gt; Ready. Tap \'Verify with VerifyBlind\'.\n</string>
+    <string name="log_cleared">&gt; Log cleared.\n</string>
+    <string name="log_ready">VerifyBlind SDK ready</string>
+    <string name="log_env">Environment: %s</string>
+    <string name="log_start">startAuthentication() started</string>
+    <string name="log_preview_marker">EXAMPLE MODE — simulation, no real verification</string>
+    <string name="log_opening">Opening VerifyBlind app…</string>
+    <string name="log_request_created">Request created. Nonce: %s</string>
+    <string name="log_complete_in_app">Complete the verification in VerifyBlind; the result is queried when you return.</string>
+    <string name="log_polling">Waiting for result (polling)…</string>
+    <string name="log_waiting_secs">… waiting (%ds)</string>
+    <string name="log_result_applied">Result received and displayed.</string>
+    <string name="log_timeout">Timeout. The query resumes automatically when you reopen the app.</string>
+    <string name="log_session_restarted">Session restarted (app was evicted). Please tap Verify again.</string>
+    <string name="log_polling_cancelled">Polling cancelled by user. You can send a new request.</string>
+    <string name="log_deeplink">🔗 App-to-Web-to-App return captured</string>
+    <string name="log_deeplink_nonce">Nonce: %s — result will be queried in the foreground.</string>
+    <string name="log_deeplink_fail">❌ Failed or cancelled. Status: %s</string>
+    <string name="log_validations">Validations: %s</string>
+    <string name="log_cancel">%1$s · reason=%2$s</string>
+
+    <!-- Errors -->
+    <string name="err_generic">Unexpected error</string>
+    <string name="err_start">Could not start: %s</string>
+    <!-- Connection error: the SAME canonical wording as the main VerifyBlind app
+         (error_connection_generic). Never show the raw exception text — it contains the API
+         host name and makes a device-side outage look like a service outage. -->
+    <string name="err_no_connection_title">Connection Error</string>
+    <string name="err_no_connection">Couldn\'t reach the internet. Please check your connection and try again.</string>
+    <string name="err_title">Error</string>
+    <string name="btn_ok">OK</string>
+
+    <!-- Cancel reasons -->
+    <string name="cancel_no_card_title">No registered card</string>
+    <string name="cancel_no_card_detail">The user has no ID card registered in the VerifyBlind app.</string>
+    <string name="cancel_declined_title">Permission denied</string>
+    <string name="cancel_declined_detail">The user did not allow data sharing.</string>
+    <string name="cancel_fingerprint_title">Biometric failed</string>
+    <string name="cancel_fingerprint_detail">Fingerprint / biometric verification failed.</string>
+    <string name="cancel_session_title">Session expired</string>
+    <string name="cancel_session_detail">The mobile session expired. Please try again.</string>
+    <string name="cancel_generic_title">Cancelled</string>
+    <string name="cancel_generic_detail">The user cancelled identity verification.</string>
+</resources>
