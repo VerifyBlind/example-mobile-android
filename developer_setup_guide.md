@@ -1,63 +1,54 @@
-# VerifyBlind Android Test App - Geliştirici Kurulum Rehberi
+# VerifyBlind Android Demo — Geliştirici Kurulum Rehberi
 
-Bu rehber, VerifyBlind Android SDK'sını kullanarak kendi partner hesabınızı test uygulamasına nasıl bağlayacağınızı ve güvenlik ayarlarını nasıl yapılandıracağınızı açıklar.
+Bu rehber, demo uygulamasını kendi partner hesabınıza nasıl bağlayacağınızı açıklar.
 
-## 1. Başlangıç ve Bağlantı
+## 1. Bağlantı ayarları
 
-Test uygulamasını kendi partner hesabınızla çalıştırmak için `local.properties` dosyasını yapılandırmanız gerekmektedir.
+Uygulama, ayarlarını proje kök dizinindeki `verifyblind.properties` dosyasından okur; `local.properties`
+varsa aynı anahtarlar onunla ezilir. İki dosya da git'e girmez.
 
-1.  Proje kök dizinindeki `local.properties.example` dosyasını `local.properties` adıyla kopyalayın.
-2.  Aşağıdaki alanları kendi bilgilerinizle doldurun:
+1. `local.properties.example` dosyasını `verifyblind.properties` (ya da `local.properties`) adıyla kopyalayın.
+2. Alanları kendi bilgilerinizle doldurun:
 
 ```properties
-# Kendi partner backend URL'iniz (İsteği imzalayıp API'ye ileten endpoint)
-verifyblind.partnerBackendUrl=https://sizin-partner-backend.com/api/verify/generate
+# Partner backend'inizdeki aracı (proxy) endpoint'in taban adresi.
+# Bu endpoint gövdeyi olduğu gibi POST /api/pop/generate'e iletir ve X-API-Key ekler.
+VERIFYBLIND_PARTNER_BACKEND_URL=https://sizin-partner-backend.com/api/
 
-# Opsiyonel: App Link baz URL'i (Özel bir ortam kullanmıyorsanız değiştirmeyin)
-verifyblind.appLinkBase=https://app.verifyblind.com/request
+# Taban adrese eklenen göreli yol (varsayılan: generate)
+VERIFYBLIND_GENERATE_ENDPOINT=generate
+
+# VerifyBlind App Link adresi (değiştirmeyin)
+VERIFYBLIND_APP_LINK_BASE=https://app.verifyblind.com/request
+
+# Sonucun sorgulandığı VerifyBlind API (varsayılan: https://api.verifyblind.com)
+VERIFYBLIND_API_URL=https://api.verifyblind.com
 ```
 
-## 2. Güvenlik Ayarları (Tavsiye Edilen)
+Sonuç, SDK tarafından doğrudan VerifyBlind API'sinden (`GET /api/pop/result/{nonce}`) sorgulanır ve
+cihazda çözülür; partner backend'inizde ayrı bir sorgulama endpoint'i gerekmez.
 
-Aşağıdaki ayarlar zorunlu değildir ancak partner hesabınızın güvenliğini sağlamak ve fraud (sahtecilik) girişimlerini önlemek için **şiddetle tavsiye edilir**.
+## 2. Sertifika sabitleme (isteğe bağlı)
 
-### A. Certificate Pinning (Sertifika Sabitleme)
-
-Uygulamanız ile partner backend'iniz arasındaki trafiğin (Man-in-the-Middle saldırılarıyla) izlenmesini engeller.
-
--   **Nasıl Yapılır?** Backend sunucunuzun SSL sertifikasının SHA-256 hash değerlerini `local.properties` dosyasına ekleyin.
--   **Neden Önemli?** Sadece güvenilen sertifikaya sahip sunucuyla konuşulmasını garanti eder.
+Uygulama ile partner backend'iniz arasındaki trafiği yalnızca belirlediğiniz sertifikalara bağlar.
+Backend sunucunuzun sertifika hash'lerini virgülle ayırarak ekleyin; en az bir asıl ve bir yedek pin
+önerilir.
 
 ```properties
-# Virgülle ayrılmış sha256 hash'leri. En az bir asıl, bir yedek (backup) pin eklemeniz önerilir.
 verifyblind.certificatePins=sha256/PRIMARY_HASH...,sha256/BACKUP_HASH...
 ```
 
-### B. Play Integrity Attestation (Cihaz Onayı)
+Uygulamadaki "Güvenlik kontrollerini atla" anahtarı açıksa sabitleme devre dışı kalır; bu anahtar
+yalnızca geliştirme içindir.
 
-İşlemin gerçekten sizin orijinal uygulamanızdan ve güvenli bir Android cihazdan gelip gelmediğini doğrular.
+## 3. Yerel geliştirme
 
--   **Nasıl Yapılır?**
-    1.  [Google Cloud Console](https://console.cloud.google.com/) üzerinden bir proje oluşturun.
-    2.  Play Integrity API'yi etkinleştirin.
-    3.  Bulut Proje Numaranızı (Cloud Project Number) `local.properties` dosyasına ekleyin.
--   **Neden Önemli?** Emülatörler, rootlu cihazlar veya değiştirilmiş (tampered) APK'lar üzerinden gelen istekleri engellemenizi sağlar.
+Debug derlemede `USE_LOCAL_API=true` verirseniz uygulama yerel ortamı kullanır:
 
 ```properties
-# Google Cloud Bulut Proje Numarası
-verifyblind.cloudProjectNumber=123456789012
+USE_LOCAL_API=true
+VERIFYBLIND_PARTNER_BACKEND_URL_LOCAL=http://10.0.2.2:3001/api/
+VERIFYBLIND_API_URL_LOCAL=http://10.0.2.2:5102
 ```
 
-## 3. verifyEndpoint Yapılandırması
-
-Partner backend tarafındaki polling (sonuç sorgulama) endpoint'inin adını belirtmek için `verifyblind.verifyEndpoint` anahtarını kullanabilirsiniz.
-
-```properties
-# Polling endpoint ismi. Varsayılan: verify
-verifyblind.verifyEndpoint=verify
-```
-
-Bu değer, `partnerBackendUrl` sonuna eklenerek (örneğin: `.../verifyblind-android-test/verify`) sorgulama yapılır.
-
----
-**Önemli Not:** Pinning ve Attestation ayarları opsiyoneldir. Ancak bu ayarlar eksik olduğunda sisteminiz Fraud ve Bot saldırılarına karşı açık hale gelebilir. Güvenli bir entegrasyon için bu adımları tamamlamanız şiddetle önerilir.
+Release derlemesi her zaman `VERIFYBLIND_PARTNER_BACKEND_URL` ve `VERIFYBLIND_API_URL` değerlerini kullanır.

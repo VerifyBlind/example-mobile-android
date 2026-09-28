@@ -35,7 +35,7 @@ demo öne gelir ve sonucu poll eder.
 1. Bu repo'yu `sdk-android` ile **yan yana** klonlayın — `settings.gradle.kts` SDK'yı
    `../sdk-android/verifyblind` yolundan dahil eder.
 2. Android Studio'da açıp Gradle senkronize edin.
-3. Kendi partner backend'inizle denemek için yapılandırmadaki `partnerBackendUrl`'i değiştirin.
+3. Kendi partner backend'inizle denemek için `verifyblind.properties` dosyasındaki `VERIFYBLIND_PARTNER_BACKEND_URL` değerini değiştirin.
 
 > Adım adım kurulum (Play yükleme dahil): [`developer_setup_guide.md`](developer_setup_guide.md).
 
@@ -74,7 +74,7 @@ foregrounding the demo, which then polls for the result.
 1. Clone this repo **alongside** `sdk-android` — `settings.gradle.kts` includes the SDK from
    `../sdk-android/verifyblind`.
 2. Open in Android Studio and sync Gradle.
-3. Change `partnerBackendUrl` in the configuration to try it with your own partner backend.
+3. To try it with your own partner backend, change `VERIFYBLIND_PARTNER_BACKEND_URL` in `verifyblind.properties`.
 
 > Step-by-step setup (including Play upload): [`developer_setup_guide.md`](developer_setup_guide.md).
 

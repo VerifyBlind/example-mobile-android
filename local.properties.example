@@ -1,16 +1,17 @@
-﻿## Bu dosya local.properties için örnektir.
-## Bu dosyayı 'local.properties' adıyla kopyalayın ve içindeki değerleri kendinize göre doldurun.
-## Bu dosya GitHub'a gönderilebilir, ancak 'local.properties' dosyası GİZLİ kalmalıdır.
+## Bu dosya ayar örneğidir. 'verifyblind.properties' (ya da 'local.properties') adıyla kopyalayın
+## ve değerleri kendinize göre doldurun. Kopyalanan dosya git'e girmez.
 
-# Partner Portal / Backend URL
-verifyblind.partnerBackendUrl=https://test.verifyblind.com/api/generate
+# Partner backend'inizdeki aracı (proxy) endpoint'in taban adresi
+VERIFYBLIND_PARTNER_BACKEND_URL=https://test.verifyblind.com/api/
 
-# Certificate Pins (Virgül ile ayrılmış sha256 hash listesi)
-# En az bir asıl, bir yedek (backup) pin eklemeniz önerilir.
+# Taban adrese eklenen göreli yol (varsayılan: generate)
+VERIFYBLIND_GENERATE_ENDPOINT=generate
+
+# VerifyBlind App Link adresi
+VERIFYBLIND_APP_LINK_BASE=https://app.verifyblind.com/request
+
+# Sonucun sorgulandığı VerifyBlind API
+VERIFYBLIND_API_URL=https://api.verifyblind.com
+
+# İsteğe bağlı sertifika sabitleme (virgülle ayrılmış sha256 listesi)
 verifyblind.certificatePins=sha256/PRIMARY_PIN,sha256/BACKUP_PIN
-
-# Polling (sorgu) uç noktası (Varsayılan: verify)
-verifyblind.verifyEndpoint=verify
-
-# VerifyBlind App Link baz URL'i
-verifyblind.appLinkBase=https://app.verifyblind.com/request
