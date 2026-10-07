@@ -79,3 +79,9 @@ foregrounding the demo, which then polls for the result.
 > Step-by-step setup (including Play upload): [`developer_setup_guide.md`](developer_setup_guide.md).
 
 🌐 [verifyblind.com](https://verifyblind.com) · 📦 [Android SDK](https://github.com/VerifyBlind/sdk-android) · 🍎 [iOS demo](https://github.com/VerifyBlind/example-mobile-ios)
+
+---
+
+## Lisans · License
+
+Apache License 2.0 — bkz. / see [LICENSE](LICENSE).
