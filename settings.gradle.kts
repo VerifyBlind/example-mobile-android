@@ -15,7 +15,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "example-mobile-android"
 include(":app")
-
-// SDK modülünü yerel klasörden dahil et
-include(":verifyblind")
-project(":verifyblind").projectDir = file("../sdk-android/verifyblind")

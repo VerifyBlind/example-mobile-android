@@ -11,7 +11,7 @@ karşılığı. Bir partner'ın VerifyBlind'i kendi uygulamasına nasıl entegre
 
 - Bundle ID / paket: `com.verifyblind.example`
 - Mağaza/görünen ad: **VerifyBlind Demo**
-- SDK: [`sdk-android`](https://github.com/VerifyBlind/sdk-android) — yerel modül olarak dahil edilir
+- SDK: [`sdk-android`](https://github.com/VerifyBlind/sdk-android) — Maven Central'dan `com.verifyblind:verifyblind-android:1.0.0`
 - **Cihaz attestation'ı YOKTUR** (bilinçli: VerifyBlind'in zero-knowledge güvenliğinin parçası değil)
 
 ### Akış
@@ -32,8 +32,7 @@ Bitince VerifyBlind `verifyblinddemo://callback?nonce=..&status=success` (ya da 
 demo öne gelir ve sonucu poll eder.
 
 ### Çalıştırma
-1. Bu repo'yu `sdk-android` ile **yan yana** klonlayın — `settings.gradle.kts` SDK'yı
-   `../sdk-android/verifyblind` yolundan dahil eder.
+1. Bu repo'yu klonlayın. SDK Maven Central'dan otomatik indirilir; başka bir repo gerekmez.
 2. Android Studio'da açıp Gradle senkronize edin.
 3. Kendi partner backend'inizle denemek için `verifyblind.properties` dosyasındaki `VERIFYBLIND_PARTNER_BACKEND_URL` değerini değiştirin.
 
@@ -50,7 +49,7 @@ An example app that consumes the VerifyBlind Android SDK (`sdk-android`) — the
 
 - Bundle ID / package: `com.verifyblind.example`
 - Store / display name: **VerifyBlind Demo**
-- SDK: [`sdk-android`](https://github.com/VerifyBlind/sdk-android) — included as a local module
+- SDK: [`sdk-android`](https://github.com/VerifyBlind/sdk-android) — from Maven Central as `com.verifyblind:verifyblind-android:1.0.0`
 - **No device attestation** (intentional: it is not part of VerifyBlind's zero-knowledge security)
 
 ### Flow
@@ -71,8 +70,7 @@ When done, VerifyBlind opens `verifyblinddemo://callback?nonce=..&status=success
 foregrounding the demo, which then polls for the result.
 
 ### Running
-1. Clone this repo **alongside** `sdk-android` — `settings.gradle.kts` includes the SDK from
-   `../sdk-android/verifyblind`.
+1. Clone this repo. The SDK is downloaded from Maven Central automatically; no other repo is needed.
 2. Open in Android Studio and sync Gradle.
 3. To try it with your own partner backend, change `VERIFYBLIND_PARTNER_BACKEND_URL` in `verifyblind.properties`.
 
