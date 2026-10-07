@@ -12,7 +12,9 @@ varsa aynı anahtarlar onunla ezilir. İki dosya da git'e girmez.
 
 ```properties
 # Partner backend'inizdeki aracı (proxy) endpoint'in taban adresi.
-# Bu endpoint gövdeyi olduğu gibi POST /api/pop/generate'e iletir ve X-API-Key ekler.
+# Bu endpoint public_key ve custom_data'yı POST /api/pop/generate'e iletir, X-API-Key ekler ve
+# validations'ı uygulamadan değil KENDİ ayarından koyar (istek değiştirilebilir: "18+" yerine
+# "1+" soran biri de imzalı age: true alır).
 VERIFYBLIND_PARTNER_BACKEND_URL=https://sizin-partner-backend.com/api/
 
 # Taban adrese eklenen göreli yol (varsayılan: generate)
