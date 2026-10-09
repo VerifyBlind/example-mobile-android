@@ -11,7 +11,7 @@ karşılığı. Bir partner'ın VerifyBlind'i kendi uygulamasına nasıl entegre
 
 - Bundle ID / paket: `com.verifyblind.example`
 - Mağaza/görünen ad: **VerifyBlind Demo**
-- SDK: [`sdk-android`](https://github.com/VerifyBlind/sdk-android) — Maven Central'dan `com.verifyblind:verifyblind-android:1.0.0`
+- SDK: [`sdk-android`](https://github.com/VerifyBlind/sdk-android) — Maven Central'dan `com.verifyblind:verifyblind-android:1.0.1`
 - **Cihaz attestation'ı YOKTUR** (bilinçli: VerifyBlind'in zero-knowledge güvenliğinin parçası değil)
 
 ### Akış
@@ -19,6 +19,9 @@ karşılığı. Bir partner'ın VerifyBlind'i kendi uygulamasına nasıl entegre
 2. SDK, VerifyBlind uygulamasını App Link ile açar (`app.verifyblind.com/request?...`).
 3. Kullanıcı doğrulamayı VerifyBlind'de tamamlar; bu demo'ya dönünce sonuç poll edilir ve şifreli yanıt
    **lokalde** çözülür.
+4. Sonuçtaki `token` (enclave'in imzaladığı ham yanıt) partner backend'in doğrulama ucuna (`.../api/verify`)
+   gönderilir. Sunucu imzayı enclave public key'iyle doğrular, nonce'u bir kez tüketir ve sonucu kendi sorduğu
+   koşula göre okur; ekranda "Sunucu doğruladı" ya da "Sunucu reddetti" görünür. **Karar telefonda verilmez.**
 
 ### Uygulamaya geri dönüş (deeplink)
 VerifyBlind, doğrulama bitince (başarı **veya** iptal) kullanıcıyı bu demo'ya geri getirir:
@@ -49,7 +52,7 @@ An example app that consumes the VerifyBlind Android SDK (`sdk-android`) — the
 
 - Bundle ID / package: `com.verifyblind.example`
 - Store / display name: **VerifyBlind Demo**
-- SDK: [`sdk-android`](https://github.com/VerifyBlind/sdk-android) — from Maven Central as `com.verifyblind:verifyblind-android:1.0.0`
+- SDK: [`sdk-android`](https://github.com/VerifyBlind/sdk-android) — from Maven Central as `com.verifyblind:verifyblind-android:1.0.1`
 - **No device attestation** (intentional: it is not part of VerifyBlind's zero-knowledge security)
 
 ### Flow
@@ -57,6 +60,10 @@ An example app that consumes the VerifyBlind Android SDK (`sdk-android`) — the
 2. The SDK opens the VerifyBlind app via an App Link (`app.verifyblind.com/request?...`).
 3. The user completes verification in VerifyBlind; back in this demo the result is polled and the
    encrypted response is decrypted **locally**.
+4. The `token` in the result (the raw response signed by the enclave) is sent to the partner backend's verify
+   endpoint (`.../api/verify`). The server checks the signature with the enclave public key, consumes the nonce
+   once and reads the result against the condition it asked; the screen shows "Verified by server" or
+   "Rejected by server". **The decision is not made on the phone.**
 
 ### Returning to your app (deeplink)
 VerifyBlind brings the user back to this demo when the flow ends (success **or** cancel):

@@ -20,11 +20,15 @@ import com.verifyblind.sdk.VerifyBlindAndroidSDK
 import com.verifyblind.sdk.VerifyBlindConfig
 import com.verifyblind.sdk.VerifyBlindException
 import com.verifyblind.example.databinding.ActivityMainBinding
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.json.JSONObject
+import java.net.HttpURLConnection
+import java.net.URL
 import java.util.Date
 import kotlin.coroutines.coroutineContext
 
@@ -172,6 +176,9 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
+        // Bu demo ziyaretçinin ne doğrulanacağını seçmesine izin verir; test.verifyblind.com bunu yalnız
+        // izin listesinden kabul eder ve sorulanı nonce ile birlikte saklar. GERÇEK bir uygulamada ne
+        // sorulacağına uygulama değil, sunucunuzdaki başlatma ucu karar verir.
         val vals = mutableMapOf<String, Any>()
         if (binding.cbValidationAge.isChecked) vals["age"] = "18+"
         if (binding.cbValidationUserId.isChecked) vals["user_id"] = true
@@ -322,9 +329,10 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 if (result != null) {
+                    activeNonce = null
                     applyResult(result)
                     log(getString(R.string.log_result_applied))
-                    activeNonce = null
+                    verifyOnServer(result)
                     return
                 }
 
@@ -344,7 +352,63 @@ class MainActivity : AppCompatActivity() {
     private fun applyResult(result: Map<String, Any>) {
         runOnUiThread {
             binding.tvResultValidations.text = renderResultJson(result)
-            showStatus(getString(R.string.status_success), R.color.success_text, R.drawable.bg_status_pill)
+        }
+    }
+
+    // ============================================================
+    //  Sunucuda doğrulama (A deseni)
+    // ============================================================
+    /**
+     * Telefondaki sonuç yalnızca gösterim içindir; karar SUNUCUDA verilir. SDK sonucun yanında
+     * enclave'in imzaladığı ham yanıtı `token` olarak verir (web widget'ının onSuccess token'ı ile
+     * aynı biçim). Token sunucunun doğrulama ucuna gönderilir; sunucu imzayı enclave public key'iyle
+     * doğrular, nonce'u bir kez tüketir ve sonucu kendi sorduğu koşula göre okur.
+     */
+    private suspend fun verifyOnServer(result: Map<String, Any>) {
+        val token = result["token"] as? String
+        if (token.isNullOrEmpty()) {
+            log(getString(R.string.log_server_rejected, getString(R.string.err_no_token)))
+            showStatus(getString(R.string.status_server_rejected), R.color.error_text, R.drawable.bg_status_pill_error)
+            return
+        }
+
+        showOverlay(R.string.overlay_server_verifying)
+        log(getString(R.string.log_server_verifying))
+        val error = try {
+            postToken(token)
+        } catch (e: Exception) {
+            if (isConnectionProblem(e)) getString(R.string.err_no_connection) else (e.message ?: getString(R.string.err_generic))
+        }
+
+        if (error == null) {
+            log(getString(R.string.log_server_ok))
+            showStatus(getString(R.string.status_server_ok), R.color.success_text, R.drawable.bg_status_pill)
+        } else {
+            log(getString(R.string.log_server_rejected, error))
+            showStatus(getString(R.string.status_server_rejected), R.color.error_text, R.drawable.bg_status_pill_error)
+        }
+    }
+
+    /** Token'ı `<partner backend>/<verify endpoint>`'e POST eder. Başarıda null, aksi halde hata metni döner. */
+    private suspend fun postToken(token: String): String? = withContext(Dispatchers.IO) {
+        val base = BuildConfig.VERIFYBLIND_PARTNER_BACKEND_URL.trimEnd('/')
+        val conn = URL("$base/${BuildConfig.VERIFYBLIND_VERIFY_ENDPOINT}").openConnection() as HttpURLConnection
+        try {
+            conn.requestMethod = "POST"
+            conn.connectTimeout = 15_000
+            conn.readTimeout = 15_000
+            conn.doOutput = true
+            conn.setRequestProperty("Content-Type", "application/json")
+            conn.outputStream.use { it.write(JSONObject().put("token", token).toString().toByteArray(Charsets.UTF_8)) }
+
+            val code = conn.responseCode
+            val body = (if (code in 200..299) conn.inputStream else conn.errorStream)
+                ?.bufferedReader()?.use { it.readText() }.orEmpty()
+            val json = runCatching { JSONObject(body) }.getOrNull()
+            if (code in 200..299 && json?.optBoolean("success") == true) null
+            else json?.optString("error")?.takeIf { it.isNotBlank() } ?: "HTTP $code"
+        } finally {
+            conn.disconnect()
         }
     }
 
@@ -357,7 +421,7 @@ class MainActivity : AppCompatActivity() {
         result["nsbd_id"]?.let { json.put("nsbd_id", it.toString()) }
         result["doc_id"]?.let { json.put("doc_id", it.toString()) }
         result.forEach { (k, v) ->
-            if (k !in setOf("user_id", "nsbd_id", "doc_id", "nonce", "validations")) json.put(k, formatVal(v))
+            if (k !in setOf("user_id", "nsbd_id", "doc_id", "nonce", "validations", "token")) json.put(k, formatVal(v))
         }
         return json.toString(2)
     }

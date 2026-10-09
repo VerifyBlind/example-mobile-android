@@ -31,6 +31,13 @@
     <!-- Status badge -->
     <string name="status_success">● Success</string>
     <string name="status_error">● Error</string>
+    <string name="status_server_ok">● Verified by server</string>
+    <string name="status_server_rejected">● Rejected by server</string>
+    <string name="overlay_server_verifying">Please wait.\nVerifying on the server…</string>
+    <string name="log_server_verifying">Sending the token to the server for verification…</string>
+    <string name="log_server_ok">✅ The server verified the signature and the asked conditions.</string>
+    <string name="log_server_rejected">❌ Server rejected the result: %1$s</string>
+    <string name="err_no_token">the result has no token (VerifyBlind Android SDK 1.0.1 or later is required)</string>
     <string name="status_example">🔵 EXAMPLE</string>
 
     <!-- Loading overlay -->

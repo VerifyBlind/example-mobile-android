@@ -31,6 +31,13 @@
     <!-- Status badge -->
     <string name="status_success">● Başarılı</string>
     <string name="status_error">● Hata</string>
+    <string name="status_server_ok">● Sunucu doğruladı</string>
+    <string name="status_server_rejected">● Sunucu reddetti</string>
+    <string name="overlay_server_verifying">Lütfen bekleyiniz.\nSunucuda doğrulanıyor…</string>
+    <string name="log_server_verifying">Token sunucuya gönderiliyor, doğrulanıyor…</string>
+    <string name="log_server_ok">✅ Sunucu imzayı ve sorulan koşulları doğruladı.</string>
+    <string name="log_server_rejected">❌ Sunucu sonucu reddetti: %1$s</string>
+    <string name="err_no_token">sonuçta token yok (VerifyBlind Android SDK 1.0.1 veya üstü gerekir)</string>
     <string name="status_example">🔵 ÖRNEK</string>
 
     <!-- Loading overlay -->
