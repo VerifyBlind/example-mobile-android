@@ -11,7 +11,7 @@ karşılığı. Bir partner'ın VerifyBlind'i kendi uygulamasına nasıl entegre
 
 - Bundle ID / paket: `com.verifyblind.example`
 - Mağaza/görünen ad: **VerifyBlind Demo**
-- SDK: [`sdk-android`](https://github.com/VerifyBlind/sdk-android) — Maven Central'dan `com.verifyblind:verifyblind-android:1.0.1`
+- SDK: [`verifyblind-sdk-android`](https://github.com/VerifyBlind/verifyblind-sdk-android) — Maven Central'dan `com.verifyblind:verifyblind-android:1.0.1`
 - **Cihaz attestation'ı YOKTUR** (bilinçli: VerifyBlind'in zero-knowledge güvenliğinin parçası değil)
 
 ### Akış
@@ -41,7 +41,7 @@ demo öne gelir ve sonucu poll eder.
 
 > Adım adım kurulum (Play yükleme dahil): [`developer_setup_guide.md`](developer_setup_guide.md).
 
-🌐 [verifyblind.com](https://verifyblind.com) · 📦 [Android SDK](https://github.com/VerifyBlind/sdk-android) · 🍎 [iOS demo](https://github.com/VerifyBlind/example-mobile-ios)
+🌐 [verifyblind.com](https://verifyblind.com) · 📦 [Android SDK](https://github.com/VerifyBlind/verifyblind-sdk-android) · 🍎 [iOS demo](https://github.com/VerifyBlind/example-mobile-ios)
 
 ---
 
@@ -52,7 +52,7 @@ An example app that consumes the VerifyBlind Android SDK (`sdk-android`) — the
 
 - Bundle ID / package: `com.verifyblind.example`
 - Store / display name: **VerifyBlind Demo**
-- SDK: [`sdk-android`](https://github.com/VerifyBlind/sdk-android) — from Maven Central as `com.verifyblind:verifyblind-android:1.0.1`
+- SDK: [`verifyblind-sdk-android`](https://github.com/VerifyBlind/verifyblind-sdk-android) — from Maven Central as `com.verifyblind:verifyblind-android:1.0.1`
 - **No device attestation** (intentional: it is not part of VerifyBlind's zero-knowledge security)
 
 ### Flow
@@ -83,7 +83,7 @@ foregrounding the demo, which then polls for the result.
 
 > Step-by-step setup (including Play upload): [`developer_setup_guide.md`](developer_setup_guide.md).
 
-🌐 [verifyblind.com](https://verifyblind.com) · 📦 [Android SDK](https://github.com/VerifyBlind/sdk-android) · 🍎 [iOS demo](https://github.com/VerifyBlind/example-mobile-ios)
+🌐 [verifyblind.com](https://verifyblind.com) · 📦 [Android SDK](https://github.com/VerifyBlind/verifyblind-sdk-android) · 🍎 [iOS demo](https://github.com/VerifyBlind/example-mobile-ios)
 
 ---
 
