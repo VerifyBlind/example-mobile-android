@@ -7,7 +7,7 @@ plugins {
 
 // release-demo.bat tarafindan yonetilir. versionName patch dondurulmus;
 // versionCode app/version.properties'te tutulur ve her release'te otomatik artar.
-val currentVersionName = "1.0.0"
+val currentVersionName = "1.0.1"
 
 android {
     namespace = "com.verifyblind.example"
